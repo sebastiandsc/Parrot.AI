@@ -113,7 +113,7 @@ CORS(app)
 
 @app.route("/")
 def home():
-	return render_template("home.html")
+	return render_template("index.html")
 
 @app.route("/get")
 def get_bot_response():
