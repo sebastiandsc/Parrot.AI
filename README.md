@@ -24,8 +24,6 @@
 * [Flask](https://flask.palletsprojects.com/en/2.1.x/)
 * [Natural Language Toolkit](https://www.nltk.org/)
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 
 
 <!-- GETTING STARTED -->
@@ -51,12 +49,10 @@
    ```sh
    git clone https://github.com/sebastiandsc/Parrot.AI
    ```
-2. Install NPM packages
+2. Install python libraries
    ```sh
    pip install
    ```
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 
 
 <!-- USAGE EXAMPLES -->
@@ -68,3 +64,5 @@ To correctly execute the code, the backend must be executed with the following c
    ```
 
 Open the file called index.html in any browser.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
