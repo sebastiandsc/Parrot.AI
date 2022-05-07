@@ -10,9 +10,6 @@ textFile = open("Datasets/1.txt", 'r', errors="ignore")
 rawText = textFile.read()
 rawText = rawText.lower()
 
-
-
-
 sentences = nltk.sent_tokenize(rawText) # This uses nltk to separate the SENTENCES in the text.
 
 words = nltk.word_tokenize(rawText) #This uses nltk to separate the WORDS in the text.
@@ -66,7 +63,7 @@ def response(userInput):
     else:
         chatbotResponse = chatbotResponse + sentences[index]
         return chatbotResponse
-
+"""
 if __name__ == "__main__":
     print("BOT: Hello! Thank you for using Parrot.AI! Ask me anything!")
     while(True):
@@ -87,6 +84,46 @@ if __name__ == "__main__":
                     string = string + response(userInput)
                     print(string)
                     sentences.remove(userInput)
+"""
+
+def MessageFunction(msg):
+    userInput = msg.lower()
+    if(userInput=="bye"):
+        string = "Bye bye!"
+        return string
+    else:
+        if("thank" in userInput):
+            string = "You're welcome!"
+            return string
+        else:
+            if(greeting(userInput)!=None):
+                string = greeting(userInput)
+                return string
+            else:
+                string = response(userInput)
+                sentences.remove(userInput)
+                return string
+
+#Flask
+from flask import Flask, render_template, request, jsonify, make_response
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)
+
+@app.route("/")
+def home():
+	return render_template("home.html")
+
+@app.route("/get")
+def get_bot_response():
+    userText = request.args.get('msg')
+    msgRes = str(MessageFunction(userText))
+    print(msgRes)
+    return jsonify(answer=msgRes)
+
+if __name__ == "__main__":
+	app.run()
 
                 
     
