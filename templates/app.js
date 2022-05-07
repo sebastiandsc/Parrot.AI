@@ -36,7 +36,7 @@ class Chatbox {
         }
     }
 
-    onSendButton(chatbox) {
+    async onSendButton(chatbox) {
         var textField = chatbox.querySelector('input');
         let text1 = textField.value
         if (text1 === "") {
@@ -46,14 +46,11 @@ class Chatbox {
         let msg1 = { name: "User", message: text1 }
         this.messages.push(msg1);
 
-        fetch('http://127.0.0.1:5000/predict', {
-            method: 'POST',
-            body: JSON.stringify({ message: text1 }),
-            mode: 'cors',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-          })
+        var url = new URL('http://127.0.0.1:5000/get'),
+        params = {msg:text1}
+        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+
+        fetch(url)
           .then(r => r.json())
           .then(r => {
             let msg2 = { name: "Sam", message: r.answer };
